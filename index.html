@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WoodClaw — AI-native sales workflow for wood & furniture B2B</title>
+<meta name="description" content="WoodClaw is an AI agent for partner acquisition in the wood, timber, and furniture industry. Research, qualify, draft outreach, track pipeline — all configured to your company's products and rubric." />
+<meta property="og:title" content="WoodClaw — AI-native sales workflow for wood & furniture B2B" />
+<meta property="og:description" content="An AI agent that researches sawmills, suppliers, and manufacturers, qualifies them against your rubric, and drafts vertical-specific outreach." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://woodclaw.io" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='70' font-size='70' text-anchor='middle'>🌲</text></svg>" />
+<style>
+  :root {
+    --fg: #1b3a2a;
+    --fg-muted: #5a6b62;
+    --bg: #fafaf7;
+    --bg-card: #ffffff;
+    --bg-dark: #1b3a2a;
+    --accent: #2D6A4F;
+    --accent-hover: #245a42;
+    --border: #e0e3df;
+    --max: 1100px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--fg);
+  }
+  .nav-links a {
+    margin-left: 28px;
+    color: var(--fg-muted);
+    font-size: 15px;
+  }
+  .nav-links a.cta {
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+  .nav-links a.cta:hover { background: var(--accent-hover); text-decoration: none; }
+
+  /* Hero */
+  .hero { padding: 80px 0 60px; text-align: center; }
+  .hero h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin: 0 0 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .sub {
+    font-size: 20px;
+    color: var(--fg-muted);
+    max-width: 720px;
+    margin: 0 auto 36px;
+  }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.1s, background 0.1s;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Problem section */
+  section { padding: 64px 0; }
+  section h2 {
+    font-size: 32px;
+    margin: 0 0 16px;
+    letter-spacing: -0.5px;
+  }
+  section .lede {
+    font-size: 18px;
+    color: var(--fg-muted);
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+  .problem {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .problem-card h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    color: var(--fg);
+  }
+  .problem-card p { margin: 0; color: var(--fg-muted); }
+  .problem-card.bad h3::before { content: "✗ "; color: #c44; }
+  .problem-card.good h3::before { content: "✓ "; color: var(--accent); }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .step {
+    padding: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .step-num {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .step h3 { margin: 0 0 8px; font-size: 18px; }
+  .step p { margin: 0; color: var(--fg-muted); font-size: 15px; }
+
+  /* Features */
+  .features {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .feature {
+    padding: 24px;
+  }
+  .feature-icon { font-size: 28px; margin-bottom: 12px; }
+  .feature h3 { margin: 0 0 8px; font-size: 18px; }
+  .feature p { margin: 0; color: var(--fg-muted); font-size: 15px; }
+
+  /* Demo block */
+  .demo-block {
+    background: var(--bg-dark);
+    color: #e8efe9;
+    border-radius: 12px;
+    padding: 32px;
+    margin-top: 32px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+  .demo-block .label { color: #8db9a3; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .demo-block pre { margin: 0; white-space: pre-wrap; }
+  .demo-block .key { color: #f3b260; }
+  .demo-block .val { color: #e8efe9; }
+
+  /* CTA section */
+  .cta-section {
+    text-align: center;
+    background: var(--bg-dark);
+    color: white;
+  }
+  .cta-section h2 { color: white; }
+  .cta-section .lede { color: #b5c4bc; margin: 0 auto 32px; }
+  .cta-section .btn-primary { background: var(--accent); }
+  .cta-section .btn-secondary { color: white; border-color: rgba(255,255,255,0.3); }
+  .cta-section .btn-secondary:hover { color: white; border-color: white; }
+
+  /* Footer */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 14px;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 36px; }
+    .hero .sub { font-size: 17px; }
+    .problem-grid, .feature-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .nav-links a { margin-left: 16px; font-size: 14px; }
+    section { padding: 48px 0; }
+    .hero { padding: 56px 0 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">🌲 WoodClaw</div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="https://huggingface.co/spaces/your-username/woodclaw" class="cta">Try the demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>AI-native sales workflow for <span class="accent">wood &amp; furniture B2B</span>.</h1>
+    <p class="sub">WoodClaw researches sawmills, suppliers, and manufacturers, qualifies them against your rubric, and drafts outreach that's specific to each target's products, certifications, and capacity — built for sales teams in timber trading, contract furniture, panels, and adjacent verticals.</p>
+    <div class="hero-ctas">
+      <a href="https://huggingface.co/spaces/your-username/woodclaw" class="btn btn-primary">Try the live demo →</a>
+      <a href="#how" class="btn btn-secondary">How it works</a>
+    </div>
+  </div>
+</header>
+
+<section class="problem">
+  <div class="wrap">
+    <h2>Built for the way wood B2B actually works.</h2>
+    <p class="lede">WoodClaw is shaped around the specific knowledge wood and furniture sales teams use every day — FAS-grade hardwood, FSC chain-of-custody, EUDR Due Diligence Statements, kiln-drying schedules, and the regional nuances between mills in Slovenia, Romania, the Baltics, and DACH. That domain context shows up in every brief and every outreach draft.</p>
+    <div class="problem-grid">
+      <div class="problem-card good">
+        <h3>Knows your products</h3>
+        <p>Configure WoodClaw with your species priorities, dimensions, grades, certifications, and minimum order sizes. Every research run is filtered through that profile — wrong species or below your grade bar gets parked automatically.</p>
+      </div>
+      <div class="problem-card good">
+        <h3>Writes targeted outreach</h3>
+        <p>"Your standard cut of 32mm FAS oak from your Romanian mill matches our open order. We're FSC-chain certified and pay Net 30 on first orders to build trust. Could we explore a pilot truckload before week of Nov 17?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lede">Configure once. Run on any target. Track the pipeline. WoodClaw reads structured Markdown files describing your company, products, qualification rubric, outreach template, and funnel — then applies them to every research run.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3>Configure your vertical</h3>
+        <p>Fill in five Markdown files: company positioning, products you buy or sell, qualification rubric, outreach template, funnel stages. Or use a built-in preset (sawn timber marketplace, contract furniture manufacturer).</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3>Drop in a target</h3>
+        <p>Paste a company name. WoodClaw runs web research, applies hard filters, scores on a 100-point rubric, assigns a Tier 1–5, picks the right outreach variant, and writes the brief + drafted email.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3>Track in the pipeline</h3>
+        <p>Every run saves to a Kanban-style pipeline with 11 funnel statuses. Move cards, export to CSV, batch-run 10 targets at once. The brief and the outreach are right there — you just review and send.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="wrap">
+    <h2>Built for the vertical, not bolted on.</h2>
+    <p class="lede">Every feature exists because someone running supplier acquisition in this industry needs it.</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon">🔍</div>
+        <h3>Vertical-aware web research</h3>
+        <p>Searches for Fordaq profiles, FSC/PEFC certifications, EUDR readiness, kiln-drying capacity, named contacts. Cites sources by URL. Marks unknowns as "unknown" — never invents facts.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Configurable qualification rubric</h3>
+        <p>Hard filters first (wrong species → parked), then 100-point scoring (capacity, certifications, recent activity, accessibility), then Tier 1–5 assignment. Your rubric, your weights.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✉️</div>
+        <h3>Multi-variant outreach</h3>
+        <p>Five outreach variants per target: standard, sophisticated-target, small-mill, hot-lead (specific dimension match), certified-buyer, DE/AT (German B1). Picks the right one based on what research turns up.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📋</div>
+        <h3>Kanban pipeline + CSV export</h3>
+        <p>11-status funnel collapsed into 5 Kanban columns (Lead, Engaged, Quoting, Won, Lost/Parked). Move cards by changing status. Export the full pipeline to CSV one click.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📦</div>
+        <h3>Batch runs</h3>
+        <p>Paste 10 names. The agent works through them sequentially, saves each brief, shows tier + summary at the end. End-of-week scan in one job.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚙️</div>
+        <h3>Adapts to your company</h3>
+        <p>Built-in presets for sawn timber marketplaces and contract furniture manufacturers. Swap five Markdown files to fit a panel supplier, a veneer importer, a hardware distributor — anything in wood B2B.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What a brief looks like.</h2>
+    <p class="lede">Generated by WoodClaw on a real target, in under 60 seconds. Verifiable facts, qualification tier, and outreach drafted in the right language.</p>
+    <div class="demo-block">
+      <div class="label">Generated brief — example</div>
+<pre><span class="key">Target:</span>          <span class="val">Juodeliai (Lithuania)</span>
+<span class="key">Tier:</span>            <span class="val">Tier 1 — Strategic partner candidate</span>
+<span class="key">Score:</span>           <span class="val">87 / 100</span>
+<span class="key">Species:</span>         <span class="val">Spruce, pine — kiln-dried softwood lumber</span>
+<span class="key">Certifications:</span>  <span class="val">FSC ✓  PEFC ✓  EUDR-ready (DDS issued from 2024)</span>
+<span class="key">Capacity:</span>        <span class="val">~600,000 m³/year (one of the Baltics' largest)</span>
+<span class="key">Recent news:</span>     <span class="val">€80M sawmill expansion announced Q4 2024</span>
+<span class="key">Hard filters:</span>    <span class="val">All passed</span>
+<span class="key">Variant chosen:</span>  <span class="val">sophisticated-target (large mill, export experience)</span>
+
+<span class="key">Outreach draft:</span>
+<span class="val">Subject:  Co-presence at the executive level — strategic
+          partnership proposal
+
+Dear Mr. Juodelis,
+
+I'm writing on behalf of [our company]...
+[2 paragraphs — drops the value-prop bullets since
+ Juodeliai already exports to 40 markets]
+
+Visit week proposed: Nov 17 or Nov 24
+Best, ...</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <h2>Try it on your own company.</h2>
+    <p class="lede">Live demo — no signup, no credit card. Drop in any sawmill, supplier, or manufacturer; see the brief + drafted outreach in under 60 seconds. Switch between the sawn-timber preset and the furniture preset to see how the same agent adapts to different verticals.</p>
+    <div class="hero-ctas">
+      <a href="https://huggingface.co/spaces/your-username/woodclaw" class="btn btn-primary">Try the live demo →</a>
+      <a href="mailto:hello@woodclaw.io" class="btn btn-secondary">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 WoodClaw. Built in Berlin.</div>
+    <div>
+      <a href="mailto:hello@woodclaw.io">hello@woodclaw.io</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
