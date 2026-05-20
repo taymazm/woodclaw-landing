@@ -24,7 +24,7 @@ Markdown-based configuration files, and SQLite.
 - **Five workflows.** Quick Lookup · Research Brief · Fit Assessment · Outreach Draft · RFQ Draft. The user picks the deliverable shape.
 - **Industry presets.** Generic B2B by default; sector-specific presets (Wood / Furniture Showcase today, more on roadmap) for vertical depth.
 - **No accidental outreach.** Three-layer guard ensures the agent never drafts emails, RFQs, LinkedIn messages, or follow-ups without explicit opt-in.
-- **Source-cited.** Every claim cites its source URL inline. Unknowns are written as `unknown`, never guessed.
+- **Source-aware.** Key factual claims are supported with source URLs where available. Unknowns are written as `unknown`, never guessed. Each brief reports overall source quality so the reader knows how much weight to put on its claims.
 - **Pipeline tracking.** Every run is saved to SQLite. Generic Kanban statuses (New → Researching → Qualified → Contacted → Negotiating → Won / Lost / Archived). CSV export.
 
 ## How it works
@@ -77,6 +77,10 @@ The code is industry-agnostic; all sector knowledge lives in preset files.
 - **Anthropic Claude API costs** ~€0.10–0.20 per run; the demo has a monthly spend cap.
 - **Early-stage MVP focused on public-source company research and first-pass decision support. Not intended to replace professional due diligence or human business judgment.**
 - **Authored presets are limited at MVP** — only Generic B2B and Wood / Furniture Showcase ship; others are roadmap stubs.
+
+## Source policy
+
+WoodClaw prioritizes primary sources — company websites, annual reports, investor releases, supplier portals, government registries, and certification bodies. Reputable secondary databases and trade press are used cautiously, and weak sources such as Wikipedia, SEO company-profile pages, and scraped directories are not used for critical claims unless verified elsewhere. For private companies, revenue / employee / ownership figures pulled from third-party databases are presented as estimates, not facts. Each brief includes a source-quality summary so the reader knows how much weight to put on its claims.
 
 ## Roadmap
 

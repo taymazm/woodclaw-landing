@@ -233,7 +233,11 @@
     overflow-x: auto;
   }
   .demo-block .label { color: #8db9a3; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .demo-block pre { margin: 0; white-space: pre-wrap; }
+  .demo-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
   .demo-block .key { color: #f3b260; }
   .demo-block .val { color: #e8efe9; }
 
@@ -290,6 +294,25 @@
     section { padding: 48px 0; }
     .hero { padding: 56px 0 40px; }
   }
+  /* Phones — tighter typography, padding, nav, and code block */
+  @media (max-width: 480px) {
+    .wrap { padding: 0 18px; }
+    .hide-mobile { display: none; }
+    .hero { padding: 40px 0 32px; }
+    .hero h1 { font-size: 30px; letter-spacing: -0.5px; }
+    .hero .sub { font-size: 16px; }
+    section { padding: 40px 0; }
+    section h2 { font-size: 26px; }
+    section .lede { font-size: 16px; margin-bottom: 28px; }
+    .nav-links a:not(.cta) { display: none; }
+    .nav-links a.cta { margin-left: 0; padding: 7px 14px; font-size: 14px; }
+    .step, .agent-card, .teaser-card { padding: 20px; }
+    .demo-block { padding: 20px; font-size: 12px; border-radius: 10px; }
+    .demo-block .label { font-size: 11px; }
+    .presets-row { padding: 18px; }
+    footer .wrap { flex-direction: column; gap: 8px; }
+    .btn { padding: 12px 22px; font-size: 15px; }
+  }
 </style>
 </head>
 <body>
@@ -307,7 +330,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <h1>Four AI agents. One company.<br/><span class="accent">Four business perspectives.</span></h1>
+    <h1>Four AI agents. One company.<br class="hide-mobile" /> <span class="accent">Four business perspectives.</span></h1>
     <p class="sub">WoodClaw turns company research into structured, source-cited decision briefs for sales, marketing, procurement, and B2B research teams.</p>
     <div class="hero-ctas">
       <a href="https://huggingface.co/spaces/taymazm/woodclaw" class="btn btn-primary">Try the demo →</a>
@@ -355,7 +378,7 @@
       <div class="agent-card">
         <div class="agent-icon">🎯</div>
         <h3>Sales Agent</h3>
-        <p>Could this company become a customer, lead, or commercial opportunity? Buyer-fit signals, named procurement contacts, recommended next step.</p>
+        <p>Could this company become a customer, lead, or commercial opportunity? Buyer-fit signals, publicly discoverable role-related contacts, recommended next step.</p>
       </div>
       <div class="agent-card">
         <div class="agent-icon">📣</div>
@@ -391,7 +414,7 @@
       </div>
       <div class="workflow-chip">
         <h4>Fit Assessment</h4>
-        <p>0–100 score + tier, role-aware criteria. Use to qualify a target.</p>
+        <p>Scored across 4 fit dimensions (signal · category · actual fit · access) + tier + recommended next step.</p>
       </div>
       <div class="workflow-chip">
         <h4>Outreach Draft</h4>
@@ -445,7 +468,7 @@
       </div>
       <div class="teaser-card">
         <h3>Wood / Furniture Showcase</h3>
-        <p>Juodeliai with the Procurement Agent shows how deep an authored sector preset can go: FSC + EUDR + capacity + named contacts in a Tier 1 supplier brief. One example of vertical depth.</p>
+        <p>Juodeliai with the Procurement Agent shows how deep an authored sector preset can go — species-aware scoring, FSC + EUDR detection, dimension matching, and honest hard-filter rejection when the supplier's catalog doesn't match the operator's spec. Realistic tiering, no false positives on big visible names.</p>
       </div>
     </div>
   </div>
@@ -454,24 +477,29 @@
 <section class="alt-bg">
   <div class="wrap">
     <h2>What an output looks like.</h2>
-    <p class="lede">A Fit Assessment from the Sales Agent. Source-cited, scored, with a recommended next step.</p>
+    <p class="lede">A Fit Assessment from the Sales Agent. Four fit dimensions, sourced research, source-quality rating, and a recommended next step.</p>
     <div class="demo-block">
       <div class="label">Sales Agent · Fit Assessment · Generic B2B preset</div>
-<pre><span class="key">Target:</span>          <span class="val">Siemens Energy (Germany, listed)</span>
-<span class="key">Lens:</span>            <span class="val">Sales — buyer-fit</span>
-<span class="key">Snapshot:</span>        <span class="val">Power-grid + gas/wind technology; ~94k employees;
-                 spun off from Siemens AG in 2020.</span>
-<span class="key">Buying signals:</span>  <span class="val">Recent grid-modernisation contracts; hydrogen-turbine
-                 expansion; named procurement contact in MRO services.</span>
-<span class="key">Misfit signals:</span>  <span class="val">Enterprise procurement gating; long evaluation cycles.</span>
-<span class="key">Score:</span>           <span class="val">82 / 100  ·  Tier B</span>
-<span class="key">Next step:</span>       <span class="val">Warm intro via Berlin services hub before
-                 cold outreach.</span>
+<pre><span class="key">Target:</span>           <span class="val">Siemens Energy (Germany, listed)</span>
+<span class="key">Lens:</span>             <span class="val">Sales — buyer-fit</span>
+<span class="key">Snapshot:</span>         <span class="val">Power-grid + gas/wind technology; ~103k employees;
+                  spun off from Siemens AG (2020); €39B revenue FY25.</span>
+<span class="key">Buying signals:</span>   <span class="val">Grid-modernisation backlog; AI / data-centre demand
+                  driving record orders; SAP Ariba supplier portal live.</span>
 
-<span class="key">Sources:</span>        <span class="val">siemens-energy.com · FT 2024-Q4 report ·
-                 Reuters 2025-02 grid-mod announcement</span>
+<span class="key">Fit breakdown:</span>    <span class="val">Signal density       5 / 5
+                  Category specificity 2 / 5
+                  Actual fit           3 / 5
+                  Access difficulty    1 / 5  (closed enterprise; gated procurement)</span>
 
-<span class="key">Outreach:</span>       <span class="val">(Outreach not requested for this run.)</span></pre>
+<span class="key">Tier:</span>            <span class="val">4  —  interesting but not actionable cold this quarter.</span>
+<span class="key">Next step:</span>       <span class="val">Park; revisit when a warm intro to a category manager
+                  or sector-specific RFP signal emerges.</span>
+
+<span class="key">Source quality:</span>  <span class="val">High — backed by FY25 earnings release + Reuters;
+                  Wikipedia used only for background orientation.</span>
+
+<span class="key">Outreach:</span>        <span class="val">(Outreach not requested for this run.)</span></pre>
     </div>
   </div>
 </section>
@@ -480,7 +508,7 @@
   <div class="wrap">
     <h2>What WoodClaw is — and isn't.</h2>
     <div class="limitations">
-      <p>WoodClaw works from publicly searchable information. It does not access paywalled databases, proprietary CRMs, or private supplier directories. Every brief cites its sources so you can verify each claim. Outreach is only drafted when you explicitly request it.</p>
+      <p>WoodClaw works from publicly searchable information. It does not access paywalled databases, proprietary CRMs, or private supplier directories. Key factual claims are supported with source URLs where available, and each brief reports overall source quality so you know how much weight to put on its claims. Outreach is only drafted when you explicitly request it.</p>
       <p>Early-stage MVP focused on public-source company research and first-pass decision support. Not intended to replace professional due diligence or human business judgment.</p>
     </div>
   </div>
